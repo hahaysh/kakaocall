@@ -1,0 +1,80 @@
+﻿@model KakaocallWebApp.Models.NotifyModel
+@{
+    ViewData["Title"] = "음식점 순번 알림";
+}
+
+<div class="container mt-4">
+    <h2>음식점 순번 알림</h2>
+    <form asp-action="Index" method="post" id="notifyForm">
+        <div class="mb-3">
+            <label asp-for="OrderNumber" class="form-label">순번</label>
+            <select asp-for="OrderNumber" class="form-select">
+                <option value="">선택</option>
+                @for (int i = 1; i <= 100; i++)
+                {
+                    if (Model.OrderNumber == i)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="OrderNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">전화번호</label>
+            <input asp-for="PhoneNumber" class="form-control" maxlength="11" pattern="\d*" inputmode="numeric" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Message" class="form-label">메시지</label>
+            <textarea asp-for="Message" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <button type="button" class="btn btn-secondary me-2" id="btnReset">초기화</button>
+            <button type="button" class="btn btn-primary me-2" id="btnMake">만들기</button>
+            <button type="submit" class="btn btn-success" id="btnSend">메시지보내기</button>
+        </div>
+    </form>
+    @if (ViewBag.SendResult != null)
+    {
+        <div class="alert @(ViewBag.SendResult.ToString().Contains("성공") ? "alert-success" : "alert-danger") mt-4">
+            @ViewBag.SendResult
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // 초기화 버튼
+        $('#btnReset').on('click', function () {
+            $('#notifyForm')[0].reset();
+        });
+        // 만들기 버튼
+        $('#btnMake').on('click', function () {
+            // 서버에서 기본 메시지와 치환값을 받아오기 위해 ajax 호출
+            const order = $('[name="OrderNumber"]').val();
+            const phone = $('[name="PhoneNumber"]').val();
+            $.ajax({
+                url: '/Home/GetDefaultMessage',
+                method: 'POST',
+                data: { orderNumber: order, phoneNumber: phone },
+                success: function (data) {
+                    $('[name="Message"]').val(data.message);
+                },
+                error: function () {
+                    alert('메시지 생성에 실패했습니다.');
+                }
+            });
+        });
+        // 전화번호 숫자만 입력
+        $('[name="PhoneNumber"]').on('input', function () {
+            this.value = this.value.replace(/[^\d]/g, '');
+        });
+    </script>
+}
