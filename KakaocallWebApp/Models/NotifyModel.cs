@@ -4,7 +4,7 @@ namespace KakaocallWebApp.Models
 {
     public class NotifyModel
     {
-        [Range(1, 100)]
+        // 순번 validation 제거
         public int OrderNumber { get; set; }
 
         [Required]

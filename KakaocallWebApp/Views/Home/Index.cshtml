@@ -8,9 +8,9 @@
     <form asp-action="Index" method="post" id="notifyForm">
         <div class="mb-3">
             <label asp-for="OrderNumber" class="form-label">순번</label>
-            <select asp-for="OrderNumber" class="form-select">
+            <select asp-for="OrderNumber" class="form-select" id="orderNumberSelect">
                 <option value="">선택</option>
-                @for (int i = 1; i <= 100; i++)
+                @for (int i = 1; i <= 1000; i++)
                 {
                     if (Model.OrderNumber == i)
                     {
@@ -51,9 +51,23 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
+        // 순번 선택값 기억 및 복원
+        $(function () {
+            var lastOrder = localStorage.getItem('lastOrderNumber');
+            if (lastOrder) {
+                $('#orderNumberSelect').val(lastOrder);
+            }
+        });
+        $('#orderNumberSelect').on('change', function () {
+            localStorage.setItem('lastOrderNumber', $(this).val());
+        });
         // 초기화 버튼
         $('#btnReset').on('click', function () {
+            var lastOrder = localStorage.getItem('lastOrderNumber');
             $('#notifyForm')[0].reset();
+            if (lastOrder) {
+                $('#orderNumberSelect').val(lastOrder);
+            }
         });
         // 만들기 버튼
         $('#btnMake').on('click', function () {
