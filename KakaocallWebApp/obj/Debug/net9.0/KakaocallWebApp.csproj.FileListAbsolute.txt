@@ -95,3 +95,4 @@ C:\Demo\temp\kakaocall\KakaocallWebApp\obj\Debug\net9.0\refint\KakaocallWebApp.d
 C:\Demo\temp\kakaocall\KakaocallWebApp\obj\Debug\net9.0\KakaocallWebApp.pdb
 C:\Demo\temp\kakaocall\KakaocallWebApp\obj\Debug\net9.0\KakaocallWebApp.genruntimeconfig.cache
 C:\Demo\temp\kakaocall\KakaocallWebApp\obj\Debug\net9.0\ref\KakaocallWebApp.dll
+C:\Demo\temp\kakaocall\KakaocallWebApp\obj\Debug\net9.0\KakaocallWebApp.sourcelink.json
