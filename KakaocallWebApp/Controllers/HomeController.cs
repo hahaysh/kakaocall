@@ -35,6 +35,13 @@ public class HomeController : Controller
         var kakaoSettings = new KakaoSettings();
         _config.Bind(kakaoSettings);
 
+        // 배포 환경(Azure Web App)에서는 환경변수(연결문자열)에서 KakaoApiKey를 우선 사용
+        var envApiKey = Environment.GetEnvironmentVariable("ConnectionStrings__KakaoApiKey");
+        if (!string.IsNullOrEmpty(envApiKey))
+        {
+            kakaoSettings.KakaoApiKey = envApiKey;
+        }
+
         // 카카오톡 메시지 전송
         var result = await SendKakaoMessage(model.PhoneNumber, model.Message, kakaoSettings.KakaoApiKey);
         ViewBag.SendResult = result;
