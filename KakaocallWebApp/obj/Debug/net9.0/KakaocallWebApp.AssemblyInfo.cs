@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KakaocallWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d9d3c4355a073f2de0a991fd410a8de6e385294")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d45906b33e388f172a65b10eeb6ae82bf09cc0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("KakaocallWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KakaocallWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
