@@ -79,7 +79,7 @@ public class HomeController : Controller
 
     public IActionResult Privacy()
     {
-        return View();
+        return NotFound(); // Privacy 페이지 제거
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

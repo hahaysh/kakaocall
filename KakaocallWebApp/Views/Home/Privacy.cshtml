@@ -1,6 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@model KakaocallWebApp.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="text-center">
+    <h1 class="display-4 text-danger">Error.</h1>
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+    <p>
+        <a asp-controller="Home" asp-action="Index">홈으로 돌아가기</a>
+    </p>
+</div>
